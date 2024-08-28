@@ -1,55 +1,56 @@
-# #sistema mediano para la caja de un banco
+#sistema mediano para la caja de un banco
 usuarios = {}
 usuarios = {"nombre":"alfredo", "valor":100.00}
-# def depositar():
-#     nombre=input("Introduce el nombre de Usuario: ")
-#     monto=float(input("Introduce el monto a depositar: "))
-#     usuarios[nombre] += monto
 
-# usuarios = []
-# cuentas = []
-
-# usuario = {"nombre":"alfredo", "estado": "A"}
-# usuarios.append(usuario)
-# cuenta = {"nombre":"alfredo", "valor":100.00}
-# cuentas.append(cuenta)
-
+def registrar_usuario():  
+    nombre=input("Ingrese el nombre del usuario a registrar: ")
+    if nombre in usuarios:
+        print(f"El usuario {nombre} ya existe, por favor ingrese otro usuario")
+    else:
+        usuarios[nombre]=0
+        print(f"Usuario {nombre} registrado")
+    
 def depositar():
-    # nombre=input("Introduce el nombre de usuario: ")
-    # monto=float(input("Introduce el monto a depositar: "))
-    # for cuenta_guardada in cuentas:
-    #     if (cuenta_guardada["nombre"] == nombre):
-    #         cuenta_guardada["valor"] += monto
     nombre=input("Introduce el nombre del usuario: ")
     if nombre in usuarios:
         monto=float(input("Introduce el monto a depositar: "))
         usuarios[nombre] += monto
+        print(f"deposito de {monto} realizado con exito, nuevo saldo: {usuarios[nombre]}")
     else:
         print(f"Usuario {nombre} no existe")
-        
-def registrar_usuario():
-    global usuarios
-    nombre=input("Ingrese el nombre del usuario a registrar: ")
-    if nombre in usuarios:
-        print(f"El usuario {nombre} ya existe, por favor ingrese otro usuario")
-        return
-    
-    monto=float(input("Ingrese el monto inicial a depositar: "))
-    usuarios ={"nombre":nombre, "monto":monto}
-    
-    print(f"Usuario {nombre} registrado, con {monto}")
-    
-def retirar():
-    
+           
+def retirar():   
     nombre=input("Introduce el nombre del usuario: ")
     if nombre in usuarios:
         retiro=float(input("Introduce el monto a retirar: "))
-        usuarios[nombre] -= retiro
+        if retiro <= usuarios[nombre]:
+            usuarios[nombre] -= retiro
+            print(f"Retiro de {retiro} realizado con exito, nuevo saldo {usuarios[nombre]}")
+        else:
+            print("Saldo insuficiente")
     else:
-        print(f"Usuario {nombre} no existe")
+        print(f"Usuario {nombre} no existe")    
 
-depositar()
-print(usuarios)
+def menu ():
+    while True:
+        print("Bienvenido al sistema de caja de banco")
+        print("1. Registrar Usuario")
+        print("2. Deposito")
+        print("3. Retiro")
+        print("4. Salir")
 
-
-
+        opcion=input("Seleccione una opcion: ")
+        
+        if opcion == '1':
+            registrar_usuario()
+        elif opcion == '2':
+            depositar()
+        elif opcion == '3':
+            retirar()
+        elif opcion == '4':
+            print("Gracias por usar el sistema")
+            break    
+        else:
+            print("Opcion invalida, por favor, intentalo nuevamente")
+            
+menu()
