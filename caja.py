@@ -1,6 +1,6 @@
 #sistema mediano para la caja de un banco
 usuarios = {}
-usuarios = {"nombre":"alfredo", "valor":100.00}
+#usuarios = {"nombre":"alfredo", "valor":100.00}
 
 def registrar_usuario():  
     nombre=input("Ingrese el nombre del usuario a registrar: ")
